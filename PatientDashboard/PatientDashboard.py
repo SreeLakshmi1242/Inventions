@@ -169,8 +169,8 @@ with col_c1:
     # Output the concatenated result
     # st.write("Combined Diagnosis and Prescriptions:", diag_pres)
 
-    diag_pres["Diagnosis Codes"] = diag_pres["Diagnosis Codes"].str.replace(" ", "")
-    diag_pres["Prescriptions"] = diag_pres["Prescriptions"].str.replace(" ", "")
+    diag_pres["Diagnosis Codes"] = diag_pres["Diagnosis Codes"].str.replace(" ", "").lower()
+    diag_pres["Prescriptions"] = diag_pres["Prescriptions"].str.replace(" ", "").lower()
     
     diagnosis = 'Diagnosis : '+', '.join(diag_pres["Diagnosis Codes"].unique())
     prescription = 'Prescriptions : '+', '.join(diag_pres["Prescriptions"].unique())
