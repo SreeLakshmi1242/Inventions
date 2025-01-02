@@ -31,7 +31,7 @@ with colc:
         st.write(filename)
         df= pd.read_csv(filename)
     else:
-        os.chdir(r"/Users/sree/Hackathon")
+        # os.chdir(r"/Users/sree/Hackathon")
         df = pd.read_csv(data_file)
 
 # Data cleaning
