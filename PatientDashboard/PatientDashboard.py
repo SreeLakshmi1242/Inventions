@@ -18,6 +18,12 @@ with col:
     st.title(" :bar_chart: Patient Dashboard")
     st.markdown("<style>div.block-container{padding-top:1rem;)</style>",unsafe_allow_html=True)
 
+current_dir = os.getcwd()
+
+# Relative path to the data file
+data_file = os.path.join(current_dir, "500_Patient_Sample.csv")
+
+
 with colc:              
     fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
     if fl is not None:
@@ -26,7 +32,7 @@ with colc:
         df= pd.read_csv(filename)
     else:
         os.chdir(r"/Users/sree/Hackathon")
-        df= pd.read_csv("500_Patient_Sample.csv")
+        df = pd.read_csv(data_file)
 
 # Data cleaning
 df['Appointment No']=df.groupby(['Patient ID'])['SNo'].rank().astype(int)
