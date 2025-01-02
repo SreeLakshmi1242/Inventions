@@ -13,10 +13,14 @@ st.set_page_config(page_title="CharmHealth CodeRx Hackathon!!!",page_icon=":bar_
 
 col,colc = st.columns(2)
 
-with col:
+# with col:
 
-    st.title(" :bar_chart: Patient Dashboard")
-    st.markdown("<style>div.block-container{padding-top:1rem;)</style>",unsafe_allow_html=True)
+#     st.title(" :bar_chart: Patient Dashboard")
+#     st.markdown("<style>div.block-container{padding-top:1rem;)</style>",unsafe_allow_html=True)
+
+with st.container():
+    st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html=True)
+    st.title(":bar_chart: Patient Dashboard")
 
 
 current_dir = os.getcwd()
