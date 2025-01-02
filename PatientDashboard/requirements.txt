@@ -2,7 +2,6 @@ streamlit
 plotly
 pandas
 numpy
-os
 matplotlib.pyplot
 altair 
 warnings
