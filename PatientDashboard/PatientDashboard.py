@@ -1,5 +1,5 @@
-
 import streamlit as st
+# from st_aggrid import GridOptionsBuilder,AgGrid
 import plotly.express as px
 import pandas as pd
 import os
@@ -18,11 +18,11 @@ with col:
     st.title(" :bar_chart: Patient Dashboard")
     st.markdown("<style>div.block-container{padding-top:1rem;)</style>",unsafe_allow_html=True)
 
+
 current_dir = os.getcwd()
 
 # Relative path to the data file
 data_file = os.path.join(current_dir, "PatientDashboard/500_Patient_Sample.csv")
-
 
 with colc:              
     fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
@@ -133,31 +133,42 @@ with col1:
     fig = px.bar(
         other_vals,x="Values",y="Metrics",orientation="h",
             color_discrete_sequence = [other_vals['color']]*len(other_vals),
-         text=str("Status"),height = 300,width=600)
+         text=str("Status"),height = 300,width=800)
 
     st.plotly_chart(fig)
     
 
 
-    diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("Not Available")
-    
-    prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("Not Available")
-
-    
+    # diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("Not Available")
+    # prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("Not Available")
     # diag_pres = pd.concat([diag[(diag.str.len()>0) & (diag.notna())],prescrip[(prescrip.str.len()>0) & (prescrip.notna())]],axis=1).fillna("Not Available")
     
-    # diagnosis = 'Diagnosis : ' +','.join(diag_pres["Diagnosis Codes"].unique())
-    # prescription = 'Prescriptions : ' + ','.join(diag_pres["Prescriptions"].unique())
+    # Check for valid data
+    diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("")
+    prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("")
 
-    if diag.empty or prescrip.empty:
-        st.warning("Diagnosis or Prescription data is empty. Please check the input file.")
-    else:
-        diag_pres = pd.concat([diag, prescrip], axis=1)
-        diag_pres.columns = ["Diagnosis Codes", "Prescriptions"]
+    # Clean data: Remove duplicates and reset index
+    diag = diag[diag.str.len() > 0].drop_duplicates().reset_index(drop=True)
+    prescrip = prescrip[prescrip.str.len() > 0].drop_duplicates().reset_index(drop=True)
 
-    diagnosis = 'Diagnosis : ' + ', '.join(diag_pres["Diagnosis Codes"].dropna())
-    prescription = 'Prescriptions : ' + ', '.join(diag_pres["Prescriptions"].dropna())
-        
+    # Handle unequal lengths by aligning with an index
+    max_len = max(len(diag), len(prescrip))
+    diag = diag.reindex(range(max_len), fill_value="")
+    prescrip = prescrip.reindex(range(max_len), fill_value="")
+
+    # Concatenate as DataFrame
+    diag_pres = pd.DataFrame({
+        "Diagnosis Codes": diag,
+        "Prescriptions": prescrip
+    })
+
+    # Output the concatenated result
+    # st.write("Combined Diagnosis and Prescriptions:", diag_pres)
+
+    diagnosis = 'Diagnosis : ' +','.join(diag_pres["Diagnosis Codes"].unique())
+    prescription = 'Prescriptions : ' + ','.join(diag_pres["Prescriptions"].unique())
+    
+
 #     st.text("Diagnosis : ")     
     st.text(diagnosis)
     st.text(prescription)
