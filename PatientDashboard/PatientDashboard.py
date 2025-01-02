@@ -133,9 +133,9 @@ with col1:
     fig = px.bar(
         other_vals,x="Values",y="Metrics",orientation="h",
             color_discrete_sequence = [other_vals['color']]*len(other_vals),
-         text=str("Status"),height = 300,width=10000)
+         text=str("Status"),height = 300,width=800)
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig,use_container_width=True)
     
 
 
