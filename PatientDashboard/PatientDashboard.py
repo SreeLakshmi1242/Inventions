@@ -11,7 +11,6 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="CharmHealth CodeRx Hackathon!!!",page_icon=":bar_chart:",layout="wide")
 
-col,colc = st.columns(2)
 
 # with col:
 
@@ -22,7 +21,7 @@ with st.container():
     st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html=True)
     st.title(":bar_chart: Patient Dashboard")
 
-
+col,colc = st.columns(2)
 current_dir = os.getcwd()
 
 # Relative path to the data file
