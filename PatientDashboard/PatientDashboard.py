@@ -21,7 +21,7 @@ with col:
 current_dir = os.getcwd()
 
 # Relative path to the data file
-data_file = os.path.join(current_dir, "500_Patient_Sample.csv")
+data_file = os.path.join(current_dir, "PatientDashboard/500_Patient_Sample.csv")
 
 
 with colc:              
