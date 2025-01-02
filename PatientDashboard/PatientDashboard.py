@@ -116,9 +116,8 @@ col3.metric("Total Appointments",total_appointment)
 # col3.metric("Temperature",temp)
 # col4.metric("Smoking Status",smok_stat)
 
-
-with col1:
-
+col_c1,col_c2 = st.columns(2)
+with col_c1:
     st.subheader(":blue[Appointment details]")
 
     data={"Metrics":["BP Systolic","BP Diastolic","Pulse Rate","Respiratory Rate"],
@@ -250,11 +249,15 @@ with col4:
 #     hide_index=True,
 # )
     st.bar_chart(df4.fillna(0),x='Appointment No',y='Pulse Rate',height=170)
-    st.bar_chart(df4.fillna(0),x='Appointment No',y='Respiratory Rate',height=170)
-    st.bar_chart(df4.fillna(0),x='Appointment No',y='BP DISYS',height=170)
-    st.bar_chart(df4.fillna(0),x='Appointment No',y='BP SYS',height=170)
-    
-    
+
+    with col_c2:
+        col_c2_c1,col_c2_c2 =st.columns(2)
+        with col_c2_c2:
+            st.bar_chart(df4.fillna(0),x='Appointment No',y='Respiratory Rate',height=170)
+            st.bar_chart(df4.fillna(0),x='Appointment No',y='BP DISYS',height=170)
+            st.bar_chart(df4.fillna(0),x='Appointment No',y='BP SYS',height=170)
+            
+            
 
 
     
