@@ -171,8 +171,6 @@ with col1:
     st.text(diagnosis)
     st.text(prescription)
 
-with col2:
-    st.write("Additional content can be placed here.")
 
 #     cola,colb = st.columns(2)
 #     with cola:
