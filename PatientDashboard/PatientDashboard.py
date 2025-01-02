@@ -18,24 +18,26 @@ st.set_page_config(page_title="CharmHealth CodeRx Hackathon!!!",page_icon=":bar_
 #     st.markdown("<style>div.block-container{padding-top:1rem;)</style>",unsafe_allow_html=True)
 
 with st.container():
-    st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html=True)
-    st.title(":bar_chart: Patient Dashboard")
+    col,colc = st.columns(2)
+    with col:
+        st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html=True)
+        st.title(":bar_chart: Patient Dashboard")
 
-col,colc = st.columns(2)
-current_dir = os.getcwd()
+
+    current_dir = os.getcwd()
 
 # Relative path to the data file
-data_file = os.path.join(current_dir, "PatientDashboard/500_Patient_Sample.csv")
+    data_file = os.path.join(current_dir, "PatientDashboard/500_Patient_Sample.csv")
 
-with colc:              
-    fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
-    if fl is not None:
-        filename=fl.name
-        st.write(filename)
-        df= pd.read_csv(filename)
-    else:
-        # os.chdir(r"/Users/sree/Hackathon")
-        df = pd.read_csv(data_file)
+    with colc:              
+        fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
+        if fl is not None:
+            filename=fl.name
+            st.write(filename)
+            df= pd.read_csv(filename)
+        else:
+            # os.chdir(r"/Users/sree/Hackathon")
+            df = pd.read_csv(data_file)
 
 # Data cleaning
 df['Appointment No']=df.groupby(['Patient ID'])['SNo'].rank().astype(int)
