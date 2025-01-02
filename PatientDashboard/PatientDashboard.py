@@ -140,18 +140,24 @@ with col1:
 
 
     diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("Not Available")
-
-    print(diag)
     
     prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("Not Available")
 
-    print(prescrip)
     
-    diag_pres = pd.concat([diag[(diag.str.len()>0) & (diag.notna())],prescrip[(prescrip.str.len()>0) & (prescrip.notna())]],axis=1).fillna("Not Available")
+    # diag_pres = pd.concat([diag[(diag.str.len()>0) & (diag.notna())],prescrip[(prescrip.str.len()>0) & (prescrip.notna())]],axis=1).fillna("Not Available")
     
-    diagnosis = 'Diagnosis : ' +','.join(diag_pres["Diagnosis Codes"].unique())
-    prescription = 'Prescriptions : ' + ','.join(diag_pres["Prescriptions"].unique())
-    
+    # diagnosis = 'Diagnosis : ' +','.join(diag_pres["Diagnosis Codes"].unique())
+    # prescription = 'Prescriptions : ' + ','.join(diag_pres["Prescriptions"].unique())
+
+    if diag.empty or prescrip.empty:
+        st.warning("Diagnosis or Prescription data is empty. Please check the input file.")
+    else:
+        diag_pres = pd.concat([diag, prescrip], axis=1)
+        diag_pres.columns = ["Diagnosis Codes", "Prescriptions"]
+
+    diagnosis = 'Diagnosis : ' + ', '.join(diag_pres["Diagnosis Codes"].dropna())
+    prescription = 'Prescriptions : ' + ', '.join(diag_pres["Prescriptions"].dropna())
+        
 #     st.text("Diagnosis : ")     
     st.text(diagnosis)
     st.text(prescription)
