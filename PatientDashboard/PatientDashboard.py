@@ -31,6 +31,7 @@ with st.container():
 
     with colc:  
         with st.container():
+            st.markdown("<style>div.block-container{padding-top:3rem;}</style>", unsafe_allow_html=True)
             fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
             if fl is not None:
                 filename=fl.name
