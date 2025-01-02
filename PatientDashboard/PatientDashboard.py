@@ -140,7 +140,13 @@ with col1:
 
 
     diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("Not Available")
+
+    print(diag)
+    
     prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("Not Available")
+
+    print(prescrip)
+    
     diag_pres = pd.concat([diag[(diag.str.len()>0) & (diag.notna())],prescrip[(prescrip.str.len()>0) & (prescrip.notna())]],axis=1).fillna("Not Available")
     
     diagnosis = 'Diagnosis : ' +','.join(diag_pres["Diagnosis Codes"].unique())
