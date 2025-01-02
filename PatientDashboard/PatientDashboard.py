@@ -136,8 +136,6 @@ with col1:
          text=str("Status"),height = 300,width=800)
 
     st.plotly_chart(fig,use_container_width=True)
-    
-
 
     # diag = app_df['Diagnosis Codes'].str.split(";").explode().fillna("Not Available")
     # prescrip = app_df['Prescriptions'].str.split(";").explode().fillna("Not Available")
@@ -172,6 +170,9 @@ with col1:
 #     st.text("Diagnosis : ")     
     st.text(diagnosis)
     st.text(prescription)
+
+with col2:
+    st.write("Additional content can be placed here.")
 
 #     cola,colb = st.columns(2)
 #     with cola:
