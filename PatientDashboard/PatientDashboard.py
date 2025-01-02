@@ -117,7 +117,7 @@ col3.metric("Total Appointments",total_appointment)
 # col4.metric("Smoking Status",smok_stat)
 
 
-with col:
+with col1:
 
     st.subheader(":blue[Appointment details]")
 
