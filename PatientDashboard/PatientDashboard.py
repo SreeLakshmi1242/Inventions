@@ -30,7 +30,7 @@ with st.container():
     data_file = os.path.join(current_dir, "PatientDashboard/500_Patient_Sample.csv")
 
     with colc:              
-        fl=st.file_uploader(":file_folder: upload a file",type=(["csv","txt","xlsx","xls"]))
+        fl=st.file_uploader(type=(["csv","txt","xlsx","xls"]))
         if fl is not None:
             filename=fl.name
             st.write(filename)
