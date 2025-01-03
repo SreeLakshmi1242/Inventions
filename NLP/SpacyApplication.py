@@ -5,7 +5,7 @@ import spacy_streamlit
 #NLP packages
 import spacy_streamlit
 import spacy
-nlp=spacy.load('en_core_web_sm')
+nlp=spacy.load('en')
 
 import warnings
 warnings.filterwarnings('ignore')
