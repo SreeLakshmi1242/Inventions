@@ -89,22 +89,6 @@ vectordb.persist() # Let's **save vectordb** so we can use it later!
 
 print(vectordb._collection.count()) # same as number of splites
 
-"""### **Similarity Search**
-
-In the following approach, the **vectordb.similarity_search(...)** method is called to perform the similarity search.
-
-The method takes the query question (question) as input and returns a list of documents similar to the query question based on their embeddings stored in the vectordb object.
-
-The parameter k=3 specifies that we want to retrieve the top 3 most similar documents as the search result.
-"""
-
-question = "how does pca reduce the dimension?"
-
-docs = vectordb.similarity_search(question,k=3) # k --> No. of doc as return
-print(len(docs))
-print(docs[0].page_content)
-print(docs[1].page_content)
-print(docs[2].page_content)
 
 """### **Retrieval + Question Answering :  Connecting with LLMs**
 
