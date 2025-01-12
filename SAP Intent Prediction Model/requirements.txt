@@ -1,0 +1,9 @@
+huggingface-hub
+langchain
+langchain_community
+pypdf
+chromadb
+tiktoken
+langchainhub
+langchain_community
+langchain
