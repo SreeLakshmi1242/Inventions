@@ -58,21 +58,6 @@ The project is designed as an Initial Prompt followed by a RAG Prompt for effici
 
 ### **Code**
 
-### **Install required packages**
-"""
-
-!pip install huggingface-hub
-!pip -q install langchain
-!pip -q install langchain_community
-!pip -q install pypdf
-!pip -q install chromadb
-!pip -q install tiktoken
-!pip install langchainhub
-!pip -q install langchain_community
-!pip -q install langchain
-!pip -q install --upgrade huggingface_hub
-!pip -q install langchain_huggingface
-
 """### **Import required packages**"""
 
 import os
